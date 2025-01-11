@@ -1,13 +1,16 @@
-const textBox = document.getElementById("textBox");
+const themeToggleButton = document.getElementById("themeToggleButton");
 
-document.getElementById("encodeButton").addEventListener("click", () => {
-    var obj = textBox;
-    var unencoded = obj.value;
-    obj.value = encodeURIComponent(unencoded).replace(/'/g, "%27").replace(/"/g, "%22");
-});
+let isDarkMode = false;
 
-document.getElementById("decodeButton").addEventListener("click", () => {
-    var obj = textBox;
-    var encoded = obj.value;
-    obj.value = decodeURIComponent(encoded.replace(/\+/g, " "));
-});
+function toggleTheme() {
+    if (isDarkMode) {
+        document.body.style.filter = "invert(0)";
+        document.body.style.backgroundColor = "#f9f9f9";
+    } else {
+        document.body.style.filter = "invert(1)";
+        document.body.style.backgroundColor = "#000";
+    }
+    isDarkMode = !isDarkMode;
+}
+
+themeToggleButton.addEventListener("click", toggleTheme);
